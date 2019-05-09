@@ -241,25 +241,25 @@ Port  Popis
       ╔7┬6┬5┬4┬3┬2┬1┬0╗
       ║0 0 0 0│ │ │ │ ║
       ╚─┴─┴─┴─┴╦┴╦┴╦┴╦╝ bit
-               ║ ║ ║ ╚═ 0: 1=povolí přerušení od přijatého znaku
-               ║ ║ ╚═══ 1: 1=povolí přerušení po odvysílání znaku
-               ║ ╚═════ 2: 1=povolí přerušení od stavu přijímací linky
+               ║ ║ ║ ╚═* 0: 1=povolí přerušení od přijatého znaku
+               ║ ║ ╚═══* 1: 1=povolí přerušení po odvysílání znaku
+               ║ ╚═════* 2: 1=povolí přerušení od stavu přijímací linky
                ║            (error nebo break)
-               ╚═══════ 3: 1=povolí přerušení od stavu modemu (CTS,DSR,RI,RLSD)
+               ╚═══════* 3: 1=povolí přerušení od stavu modemu (CTS,DSR,RI,RLSD)
       ┌───────────────────┐
       │ Důležité poznámky │ Pokud chcete používat přerušení, nezapomeňte
       └───────────────────┘ na následující:
-        Nastavit adresu svého obslužného podprogramu na příslušné vektory
-        Naprogramovat  Řadič přerušení, aby od daného IRQ mohlo být
+       - Nastavit adresu svého obslužného podprogramu na příslušné vektory
+       - Naprogramovat  Řadič přerušení, aby od daného IRQ mohlo být
          generováno přerušení
-        Nastavit bitovou masku do registru povolení přerušení, aby se
+       - Nastavit bitovou masku do registru povolení přerušení, aby se
          generovalo přerušení od událostí jen toho typu, který chcete
-        Nastavit bit OUT2 na 1 (viz níže).
+       - Nastavit bit OUT2 na 1 (viz níže).
       V obslužném programu přerušení pak musíte:
-        Odhlásit řadiči přerušení přerušení (magická sekvence OUT 20H,20H)
-        Vyčtením registru identifikace přerušení zjistit, o jakou událost se
+       - Odhlásit řadiči přerušení přerušení (magická sekvence OUT 20H,20H)
+       - Vyčtením registru identifikace přerušení zjistit, o jakou událost se
          jedná
-        Podle typu události podniknout příslušnou akci (převzít přijatý
+       - Podle typu události podniknout příslušnou akci (převzít přijatý
          znak, zapsat do registru vysílače další znak atd.).
 
 3faH  Čtení: Registr identifikace přerušení. Po příchodu přerušení vyčtěte tento
@@ -267,7 +267,7 @@ Port  Popis
       ╔7┬6┬5┬4┬3┬2┬1┬0╗
       ║0 0 0 0 0│   │ ║
       ╚─┴─┴─┴─┴─┴─┴─┴╦╝ bit
-                 ╚╦╝ ╚═ 0: 1=žádné otevřené přerušení (lze použít pro polling)
+                 ╚╦╝ ╚═* 0: 1=žádné otevřené přerušení (lze použít pro polling)
                   ║         0=příčinu přerušení určují bity 2-1
                   ║
                   ╚══ 2-1: 00=Změna stavu modemu (některého ze signálů CTS,DSR,
@@ -289,11 +289,11 @@ Port  Popis
       ╔7┬6┬5┬4┬3┬2┬1┬0╗
       ║   │0 0 0│ │ │ ║
       ╚─╬─┴─┴─┴─┴╦┴╦┴╦╝ bit
-        ║        ║ ║ ╚═ 0: 1=povolení FIFO přijímače a vysílače
+        ║        ║ ║ ╚═* 0: 1=povolení FIFO přijímače a vysílače
         ║        ║ ║        0=výmaz přijímací a vysílací fronty, znakový režim
-        ║        ║ ╚═══ 1: 1=reset přijímacích FIFO registrů
-        ║        ╚═════ 2: 1=reset vysílacích FIFO registrů
-        ╚══════════════ 7-6: Nastavení FIFO registrů 00 = 1 byte
+        ║        ║ ╚═══* 1: 1=reset přijímacích FIFO registrů
+        ║        ╚═════* 2: 1=reset vysílacích FIFO registrů
+        ╚══════════════* 7-6: Nastavení FIFO registrů 00 = 1 byte
                                                       01 = 4 byty
                                                       10 = 8 bytů
                                                       11 = 14 bytů
@@ -302,12 +302,12 @@ Port  Popis
       ╔7┬6┬5┬4┬3┬2┬1┬0╗
       ║ │ │ │par│s│len║
       ╚╦┴╦┴╦┴─┴─┴╦┴─┴─╝ bit
-       ║ ║ ║ ╚╦╝ ║ ╚═╩═ 0-1: délka slova: 00=5, 01=6, 10=7, 11=8
-       ║ ║ ║  ║  ╚═════ 2: stop bity: 0=1, 1=2
-       ║ ║ ║  ╚════════ 3-4 parita: x0=nic, 01=Lichá, 11=Sudá
-       ║ ║ ╚═══════════ 5: zaseklá parita (nepoužito BIOSem)
-       ║ ╚═════════════ 6: povolení kontroly break. 1=začne vysílat nulu
-       ╚═══════════════ 7: DLAB (Divisor Latch Access Bit) - přístup do
+       ║ ║ ║ ╚╦╝ ║ ╚═╩═* 0-1: délka slova: 00=5, 01=6, 10=7, 11=8
+       ║ ║ ║  ║  ╚═════* 2: stop bity: 0=1, 1=2
+       ║ ║ ║  ╚════════* 3-4 parita: x0=nic, 01=Lichá, 11=Sudá
+       ║ ║ ╚═══════════* 5: zaseklá parita (nepoužito BIOSem)
+       ║ ╚═════════════* 6: povolení kontroly break. 1=začne vysílat nulu
+       ╚═══════════════* 7: DLAB (Divisor Latch Access Bit) - přístup do
                             registru dělitele na portech 3f8H a 3f9H.
                             1=nastav přenosovou rychlost, 0=normální stav
 
@@ -315,11 +315,11 @@ Port  Popis
       ╔7┬6┬5┬4┬3┬2┬1┬0╗
       ║0 0 0│ │ │ │ │ ║
       ╚─┴─┴─┴╦┴╦┴╦┴╦┴╦╝ bit
-             ║ ║ ║ ║ ╚═ 0: 1=aktivace -DTR (-data terminal ready), 0=deaktivace
-             ║ ║ ║ ╚═══ 1: 1=aktivace -RTS (-request to send), 0=deaktivace
-             ║ ║ ╚═════ 2: 1=aktivace -OUT1 (uživatelský výstup)
-             ║ ╚═══════ 3: 1=aktivace -OUT2
-             ╚═════════ 4: 1=aktivace zpětné vazby pro diagnostické účely
+             ║ ║ ║ ║ ╚═* 0: 1=aktivace -DTR (-data terminal ready), 0=deaktivace
+             ║ ║ ║ ╚═══* 1: 1=aktivace -RTS (-request to send), 0=deaktivace
+             ║ ║ ╚═════* 2: 1=aktivace -OUT1 (uživatelský výstup)
+             ║ ╚═══════* 3: 1=aktivace -OUT2
+             ╚═════════* 4: 1=aktivace zpětné vazby pro diagnostické účely
       ┌────────────┐
       │  Poznámky  │ Bity OUT1 a OUT2 jsou z hlediska výrobce příslušného
       └────────────┘ integrovaného obvodu vývody na pouzdře, jejichž funkce
@@ -337,28 +337,28 @@ Port  Popis
       ╔7┬6┬5┬4┬3┬2┬1┬0╗
       ║0│ │ │ │ │ │ │ ║ Pozn.:bity 1-4 způsobují přerušení, je-li povoleno(3f9H)
       ╚─┴╦┴╦┴╦┴╦┴╦┴╦┴╦╝ bit
-         ║ ║ ║ ║ ║ ║ ╚═ 0: 1=data ready (DR). Reset čtením přijatého znaku
-         ║ ║ ║ ║ ║ ╚═══ 1: 1=overrun error (OE). Předchozí znak je ztracen
-         ║ ║ ║ ║ ╚═════ 2: 1=parity error (PE). Reset čtením statusu linky
-         ║ ║ ║ ╚═══════ 3: 1=framing error (FE). Špatný stop bit ve znaku
-         ║ ║ ╚═════════ 4: 1=break indicated (BI). Přijata trvalá nula.
-         ║ ╚═══════════ 5: 1=vyprázdnění registru vysílače. Může se vysílat
-         ╚═════════════ 6: 1=vysílač je prázdný. Žádná data nejsou zpracovávána
+         ║ ║ ║ ║ ║ ║ ╚═* 0: 1=data ready (DR). Reset čtením přijatého znaku
+         ║ ║ ║ ║ ║ ╚═══* 1: 1=overrun error (OE). Předchozí znak je ztracen
+         ║ ║ ║ ║ ╚═════* 2: 1=parity error (PE). Reset čtením statusu linky
+         ║ ║ ║ ╚═══════* 3: 1=framing error (FE). Špatný stop bit ve znaku
+         ║ ║ ╚═════════* 4: 1=break indicated (BI). Přijata trvalá nula.
+         ║ ╚═══════════* 5: 1=vyprázdnění registru vysílače. Může se vysílat
+         ╚═════════════* 6: 1=vysílač je prázdný. Žádná data nejsou zpracovávána
 
 
 3feH  Čtení: Registr stavu modemu
       ╔7┬6┬5┬4┬3┬2┬1┬0╗
       ║ │ │ │ │ │ │ │ ║ Pozn.:bity 0-3 způsobují přerušení, je-li povoleno(3f9H)
       ╚╦┴╦┴╦┴╦┴╦┴╦┴╦┴╦╝ bit
-       ║ ║ ║ ║ ║ ║ ║ ╚═ 0: 1=Delta Clear To Send (DCTS) - CTS změnil stav
-       ║ ║ ║ ║ ║ ║ ╚═══ 1: 1=Delta Data Set Ready (DDSR) - DSR změnil stav
-       ║ ║ ║ ║ ║ ╚═════ 2: 1=Trailing Edge Ring Indicator (TERI)
+       ║ ║ ║ ║ ║ ║ ║ ╚═* 0: 1=Delta Clear To Send (DCTS) - CTS změnil stav
+       ║ ║ ║ ║ ║ ║ ╚═══* 1: 1=Delta Data Set Ready (DDSR) - DSR změnil stav
+       ║ ║ ║ ║ ║ ╚═════* 2: 1=Trailing Edge Ring Indicator (TERI)
        ║ ║ ║ ║ ║            vzestupná hrana indikátoru vyzvánění
-       ║ ║ ║ ║ ╚═══════ 3: 1=Delta Data Carrier Detect (DDCD) - DCD změnil stav
-       ║ ║ ║ ╚═════════ 4: 1=Clear To Send (CTS) je aktivní
-       ║ ║ ╚═══════════ 5: 1=Data Set Ready (DSR) je aktivní
-       ║ ╚═════════════ 6: 1=Ring Indicator (RI) je aktivní
-       ╚═══════════════ 7: 1=Data Carrier Detect (DCD) je aktivní
+       ║ ║ ║ ║ ╚═══════* 3: 1=Delta Data Carrier Detect (DDCD) - DCD změnil stav
+       ║ ║ ║ ╚═════════* 4: 1=Clear To Send (CTS) je aktivní
+       ║ ║ ╚═══════════* 5: 1=Data Set Ready (DSR) je aktivní
+       ║ ╚═════════════* 6: 1=Ring Indicator (RI) je aktivní
+       ╚═══════════════* 7: 1=Data Carrier Detect (DCD) je aktivní
 ```
 
 4
@@ -397,8 +397,7 @@ Zapojení konektoru RS-232C
 
 ```
 
-
-                                     5
+5
 Protokol DISTEL
 ---
 Základní složení tohoto protokolu je následující:
