@@ -98,6 +98,7 @@ programu zobrazen potvrzovací dialog, zda chcete program opravdu ukončit.
 1.3
 Utility
 ---
+
 V tomto menu jsou na výběr některé pomůcky pro komunikaci.
 ( Vysilat nepretrzite, Zobrazuj nepretrzite, Zobrazuj prijate znaky )
 
@@ -132,6 +133,7 @@ znaků.
 1.4
 Komunikace
 ---
+
 Pro odesílání a přijímání dat je možne využít několika módů Terminálu:
 
 - ASCII: Znaky jsou posílány z klávesnice přímo na port - bez zobrazení
@@ -171,6 +173,7 @@ Pro odesílání a přijímání dat je možne využít několika módů Termin�
 1.5
 Buffery pro odesílání znaků
 ---
+
 V každém módu Terminálu lze použít buffer pro odesílání znaků. Velikost
 tohoto bufferu je max. 55 bytů. Buffery pro ASCII a HEX módy jsou oddělené,
 v módu ASC/HEX se využívá ASCII buffer. Editovat je lze pomocí kombinace
@@ -183,13 +186,10 @@ Po vyslání obsahu bufferu můžete pokračovat odesíláním znaků/bytů
 z klávesnice.
 
 
-
-
-
-
 2
 Problémy s komunikací
 ---
+
  Občas se může stát, že na konkrétním portu operuje nějaká Windowsí rutina,
  což se projeví periodickým přijímáním nějakého znaku (vetšinou FFh),
  bez připojeného zařízení na portu...
@@ -224,7 +224,7 @@ používat Terminal, restartovat počítač, aby BIOS obnovil nastavení portu.
 3
 Popis přímého ovládáni sériových portů:
 ---
-
+```
 Port  Popis
 ▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 3f8H  Zápis: Vysílací registr. 8 bitů znaku k odvysílání
@@ -359,17 +359,13 @@ Port  Popis
        ║ ║ ╚═══════════ 5: 1=Data Set Ready (DSR) je aktivní
        ║ ╚═════════════ 6: 1=Ring Indicator (RI) je aktivní
        ╚═══════════════ 7: 1=Data Carrier Detect (DCD) je aktivní
-
-
-
-
-
+```
 
 4
 Zapojení konektoru RS-232C
 ---
 
-
+```
         Canon 25 pin - samec           Canon 9 pin - samec
                 ┌───┐                           ┌───┐
              ┌──┘ 1o│                       ┌───┘ 1o│  DCD
@@ -399,7 +395,7 @@ Zapojení konektoru RS-232C
              └──┐13o│
                 └───┘
 
-
+```
 
 
                                      5
@@ -407,11 +403,13 @@ Protokol DISTEL
 ---
 Základní složení tohoto protokolu je následující:
 
+```
            ┌────────┬───────┬────────┬────────────────────┬────────┐
   Velikost │  1 B   │  1 B  │  1 B   │      [LN] B        │  1 B   │
   Popis    │ Adresa │ Délka │ Příkaz │                    │ Součet │
   Označení │  ADR   │  LN   │  CMD   │       DATA         │  CRC   │
            └────────┴───────┴────────┴────────────────────┴────────┘
+```
 
 "Adresa" - Adresa zařízení
 "Délka" - Délka dat - začíná bytem CMD a končí bytem CRC
