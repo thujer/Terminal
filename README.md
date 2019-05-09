@@ -4,9 +4,7 @@ NÁVOD K PROGRAMU TERMINAL
 ---
 
 Tento program byl napsán pro zjednodušení využití sériových portů (COM).
-
 Nastavení parametrů portu se provádí přímo, tzn. přímým zápisem
-
 na adresy portů uložených na adresách Proměnných ROM-BIOSu:
 
 Adresa  Bytu Obsah
@@ -97,9 +95,9 @@ nebo jsou dosazeny konstantní hodnoty
 programu zobrazen potvrzovací dialog, zda chcete program opravdu ukončit.
 
 
-                                    1.3
-                                  Utility
-                                 ---------
+1.3
+Utility
+---
 V tomto menu jsou na výběr některé pomůcky pro komunikaci.
 ( Vysilat nepretrzite, Zobrazuj nepretrzite, Zobrazuj prijate znaky )
 
@@ -131,9 +129,9 @@ Zobrazuje ve výstupním okně přijaté znaky v HEX formě
 Znak přijatý na COM1 nebo COM2, je poslán zpět. Zobrazuje se počet přijatých
 znaků.
 
-                                    1.4
-                                 Komunikace
-                                ------------
+1.4
+Komunikace
+---
 Pro odesílání a přijímání dat je možne využít několika módů Terminálu:
 
 - ASCII: Znaky jsou posílány z klávesnice přímo na port - bez zobrazení
@@ -170,9 +168,9 @@ Pro odesílání a přijímání dat je možne využít několika módů Termin�
 
 
 
-                                    1.5
-                         Buffery pro odesílání znaků
-                        -----------------------------
+1.5
+Buffery pro odesílání znaků
+---
 V každém módu Terminálu lze použít buffer pro odesílání znaků. Velikost
 tohoto bufferu je max. 55 bytů. Buffery pro ASCII a HEX módy jsou oddělené,
 v módu ASC/HEX se využívá ASCII buffer. Editovat je lze pomocí kombinace
@@ -189,9 +187,9 @@ z klávesnice.
 
 
 
-                                     2
-                            Problémy s komunikací
-------------------------------------------------------------------------------
+2
+Problémy s komunikací
+---
  Občas se může stát, že na konkrétním portu operuje nějaká Windowsí rutina,
  což se projeví periodickým přijímáním nějakého znaku (vetšinou FFh),
  bez připojeného zařízení na portu...
@@ -223,9 +221,9 @@ používat Terminal, restartovat počítač, aby BIOS obnovil nastavení portu.
 
 
 
-                                     3
-                    Popis přímého ovládáni sériových portů:
-------------------------------------------------------------------------------
+3
+Popis přímého ovládáni sériových portů:
+---
 
 Port  Popis
 ▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
@@ -367,9 +365,9 @@ Port  Popis
 
 
 
-                                     4
-                         Zapojení konektoru RS-232C
-------------------------------------------------------------------------------
+4
+Zapojení konektoru RS-232C
+---
 
 
         Canon 25 pin - samec           Canon 9 pin - samec
@@ -405,8 +403,8 @@ Port  Popis
 
 
                                      5
-                              Protokol DISTEL
-                             -----------------
+Protokol DISTEL
+---
 Základní složení tohoto protokolu je následující:
 
            ┌────────┬───────┬────────┬────────────────────┬────────┐
@@ -424,6 +422,3 @@ Základní složení tohoto protokolu je následující:
 Byte Adresa je jedničkové parity, ostatní byty jsou nulové parity.
 
 
-
-
-...........................................................................
