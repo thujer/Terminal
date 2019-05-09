@@ -1,6 +1,6 @@
 Borland C++ - COM & LPT terminal application, DistEl protocol
 
-NÁVOD K PROGRAMU TERMINAL
+NÁVOD K APLIKACI TERMINAL
 ---
 
 Tento program byl napsán pro zjednodušení využití sériových portů (COM).
