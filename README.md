@@ -1,14 +1,18 @@
 Borland C++ - COM & LPT terminal application, DistEl protocol
 
 NÁVOD K PROGRAMU TERMINAL
-=============================
+---
 
 Tento program byl napsán pro zjednodušení využití sériových portů (COM).
+
 Nastavení parametrů portu se provádí přímo, tzn. přímým zápisem
+
 na adresy portů uložených na adresách Proměnných ROM-BIOSu:
 
 Adresa  Bytu Obsah
+
 ▀▀▀▀▀▀▀ ▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+```
 0:0400    2  Adresa portu prvního RS-232 adaptéru (COM1)
 0:0402    2  Port COM2
 0:0404    2  Port COM3
@@ -17,27 +21,33 @@ Adresa  Bytu Obsah
 0:040A    2  Port LPT2
 0:040C    2  Port LPT3
 0:040E    2  Port LPT4
+```
 
 
 Výhodou tohoto způsobu ovládaní portu je, že lze nastavit vetšinu
+
 parametrů portu, které nejsou jinak DOSovým aplikacím přístupné.
 
 
 Nežádoucím důsledkem tohoto nastavování je občas konfliktní
+
 komunikace pod Windows32 (viz kap. 2).
+
 Je to způsobeno tím, že Terminal si nastaví parametry portu které
+
 Windows nenastavují a to způsobí, že Windows pak nejsou schopny
+
 si port správně nastavit.
 
 
 
-                                      1
-                                NÁVOD K POUŽITÍ
-------------------------------------------------------------------------------
+1
+NÁVOD K POUŽITÍ
+---
 
-                                     1.2
-                                  Nastavení
-                                 -----------
+1.2
+Nastavení
+---
 
 Nastavení portu je přístupné v hlavním menu pod položkou "Nastaveni".
 Můžete zde nastavit různé parametry komunikace:
