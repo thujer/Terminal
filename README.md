@@ -7,6 +7,8 @@ Tento program byl napsán pro zjednodušení využití sériových portů (COM).
 Nastavení parametrů portu se provádí přímo, tzn. přímým zápisem
 na adresy portů uložených na adresách Proměnných ROM-BIOSu:
 
+![preview](https://github.com/thujer/Terminal/blob/master/doc/preview.png?raw=true)
+
 Adresa  Bytu Obsah
 
 ▀▀▀▀▀▀▀ ▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
